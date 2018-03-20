@@ -5,6 +5,11 @@
       <sourceFolder url="file://$MODULE_DIR$/src/Swoole" isTestSource="false" packagePrefix="Swoole\" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/amphp/amp" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/kmelia/monolog-stdout-handler" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/lcobucci/clock" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/monolog/monolog" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/nmred/kafka-php" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/psr/log" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/react/event-loop" />
     </content>
     <orderEntry type="inheritedJdk" />
@@ -16,6 +21,11 @@
           <root url="file://$MODULE_DIR$/../../framework" />
           <root url="file://$MODULE_DIR$/vendor/amphp/amp" />
           <root url="file://$MODULE_DIR$/vendor/composer" />
+          <root url="file://$MODULE_DIR$/vendor/kmelia/monolog-stdout-handler" />
+          <root url="file://$MODULE_DIR$/vendor/lcobucci/clock" />
+          <root url="file://$MODULE_DIR$/vendor/monolog/monolog" />
+          <root url="file://$MODULE_DIR$/vendor/nmred/kafka-php" />
+          <root url="file://$MODULE_DIR$/vendor/psr/log" />
           <root url="file://$MODULE_DIR$/vendor/react/event-loop" />
           <root url="file://$MODULE_DIR$/../../proj/ide-helper/output" />
         </CLASSES>
@@ -24,6 +34,11 @@
           <root url="file://$MODULE_DIR$/../../framework" />
           <root url="file://$MODULE_DIR$/vendor/amphp/amp" />
           <root url="file://$MODULE_DIR$/vendor/composer" />
+          <root url="file://$MODULE_DIR$/vendor/kmelia/monolog-stdout-handler" />
+          <root url="file://$MODULE_DIR$/vendor/lcobucci/clock" />
+          <root url="file://$MODULE_DIR$/vendor/monolog/monolog" />
+          <root url="file://$MODULE_DIR$/vendor/nmred/kafka-php" />
+          <root url="file://$MODULE_DIR$/vendor/psr/log" />
           <root url="file://$MODULE_DIR$/vendor/react/event-loop" />
           <root url="file://$MODULE_DIR$/../../proj/ide-helper/output" />
         </SOURCES>
