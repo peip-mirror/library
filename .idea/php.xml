@@ -10,6 +10,9 @@
       <path value="$PROJECT_DIR$/../../framework" />
       <path value="/data/www/public/sdk" />
       <path value="$PROJECT_DIR$/../../proj/ide-helper/output" />
+      <path value="$PROJECT_DIR$/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/amphp/amp" />
+      <path value="$PROJECT_DIR$/vendor/react/event-loop" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7" />
