@@ -1,0 +1,34 @@
+{
+    "name": "swoole/library",
+    "description": "The swoole library.",
+    "keywords": ["swoole", "library"],
+    "license": "apache",
+    "homepage": "https://www.swoole.com",
+    "support": {
+        "issues": "https://github.com/swoole/library/issues",
+        "source": "https://github.com/swoole/library"
+    },
+    "authors": [
+        {
+            "name": "Rango",
+            "email": "rango@swoole.com"
+        }
+    ],
+    "require": {
+        "php": "^7.0.0",
+        "ext-swoole": "*",
+    },   
+    "autoload": {
+        "files": [
+            "src/Swoole/Foundation/helpers.php",
+        ],
+        "psr-4": {
+            "Swoole\\": "src/Swoole/"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
