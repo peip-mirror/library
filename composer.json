@@ -2,7 +2,7 @@
     "name": "swoole/library",
     "description": "The swoole library.",
     "keywords": ["swoole", "library"],
-    "license": "apache",
+    "license": "apache-2.0",
     "homepage": "https://www.swoole.com",
     "support": {
         "issues": "https://github.com/swoole/library/issues",
