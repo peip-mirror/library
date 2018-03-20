@@ -20,7 +20,7 @@
     },   
     "autoload": {
         "files": [
-            "src/Swoole/Foundation/helpers.php",
+            "src/Swoole/Foundation/helpers.php"
         ],
         "psr-4": {
             "Swoole\\": "src/Swoole/"
