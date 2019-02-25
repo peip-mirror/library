@@ -14,25 +14,29 @@ class Server
         $this->server->set([
             'worker_num' => 1,
         ]);
-
-        // $this->server->on('Connect', [$this, 'onConnect']);
         $this->server->on('WorkerStart', [$this, 'WorkerStart']);
         $this->server->on('Request', [$this, 'onRequest']);
-//         $this->server->on('Close', [$this, 'onClose']);
         $this->server->start();
     }
 
     public function WorkerStart($serv, $worker_id)
     {
         Runtime::enableCoroutine();
-        $this->redis = new Swoole\Coroutine\Hook\Redis(array(
+        echo "worker $worker_id start \n";
+    }
+
+    public function onRequest($request, $response)
+    {
+        Runtime::getInstance()->RInit();
+        $redis = Swoole\Coroutine\Hook\Redis::getInstance(array(
             'host' => '127.0.0.1',
             'port' => 6379,
             'timeout' => 0.5,
             'object_id' => 'master'
         ));
+        $redis_data = $redis->get("key");
 
-        $this->db = new Swoole\Coroutine\Hook\MySQL(array(
+        $mysql = Swoole\Coroutine\Hook\MySQL::getInstance(array(
             'type'    => Swoole\Database::TYPE_MYSQLi,
             'host'    => "127.0.0.1",
             'port'    => 3306,
@@ -44,18 +48,10 @@ class Server
             'setname' => true,
             'object_id' => 'master'
         ));
-        echo "worker $worker_id start \n";
-    }
-
-    public function onRequest($request, $response)
-    {
-        Runtime::getInstance()->RInit();
-        $res = $this->redis->set("key", "hello swoole");
-        $data = $this->redis->get("key");
-        $db = $this->db->query("select * from test limit 1")->fetch();
+        $mysql_data = $mysql->query("select * from test limit 1")->fetch();
         $ret = [
-            'redis' => $res,
-            'db' => $db,
+            'redis' => $redis_data,
+            'db' => $mysql_data,
         ];
         $response->end(json_encode($ret,JSON_UNESCAPED_UNICODE));
         Runtime::getInstance()->RShutdown();

@@ -17,7 +17,7 @@ class Runtime
 
     /**
      * 初始化
-     * @return Swoole
+     * @return Runtime
      */
     static function getInstance()
     {

@@ -6,7 +6,9 @@ use Swoole\Coroutine\Redis as CoRedis;
 
 class Redis extends Pool
 {
-    protected $type = 'redis';
+    public static function getType() {
+        return __CLASS__;
+    }
 
     function __construct($config)
     {

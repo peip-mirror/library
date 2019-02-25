@@ -18,6 +18,24 @@ abstract class Pool
     static $threshold_num = 10;
     static $threshold_idle_sec = 120;
 
+
+
+    static protected $obj = null;
+
+    static function getInstance($config)
+    {
+        $type = static::getType();
+        if (empty($config['object_id']))
+        {
+            throw new Swoole\Exception\InvalidParam("require object_id");
+        }
+        if (!self::$obj[$type][$config['object_id']])
+        {
+            self::$obj[$type][$config['object_id']] = new static($config);
+        }
+        return self::$obj[$type][$config['object_id']];
+    }
+
     function __construct($config)
     {
         if (empty($config['object_id']))
@@ -26,7 +44,8 @@ abstract class Pool
         }
         $this->config = $config;
         $this->pool = new MinHeap();
-        $this->type .= '_'.$config['object_id'];
+
+        $this->type = static::getType().'_'.$config['object_id'];
     }
 
     function _createObject()
@@ -49,11 +68,12 @@ abstract class Pool
             {
                 $object = $this->create();
             }
+            $this->current_entity ++;
+            Context::put($this->type, $object);
+            return $object;
             break;
         }
-        $this->current_entity ++;
-        Context::put($this->type, $object);
-        return $object;
+        return false;
     }
 
     function _freeObject()
@@ -76,7 +96,12 @@ abstract class Pool
 
     protected function _getObject()
     {
-        return Context::get($this->type);
+        $obj =  Context::get($this->type);
+        if ($obj) {
+            return $obj;
+        } else {
+            return $this->_createObject();
+        }
     }
 
     private function isReuse()
@@ -94,6 +119,7 @@ abstract class Pool
     }
 
     abstract function create();
+    abstract static function getType();
 }
 
 

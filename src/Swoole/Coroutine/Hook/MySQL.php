@@ -2,6 +2,7 @@
 
 namespace Swoole\Coroutine\Hook;
 
+use Swoole;
 use Swoole\Coroutine\Pool;
 use Swoole\Coroutine\Context;
 use Swoole\Database\MySQLi as CoMysql;
@@ -9,18 +10,11 @@ use Swoole\Database\MySQLi as CoMysql;
 
 class MySQL extends Pool
 {
-    protected $type = 'mysql';
-
-    static function init()
-    {
-
-    }
-
     function __construct($config)
     {
         parent::__construct($config);
-        \Swoole\Core\Runtime::getInstance()->addRInitHook([$this, '_createObject'], __CLASS__);
-        \Swoole\Core\Runtime::getInstance()->addRShutdownHook([$this, '_freeObject'], __CLASS__);
+        Swoole\Core\Runtime::getInstance()->addRInitHook([$this, '_createObject'], __CLASS__);
+        Swoole\Core\Runtime::getInstance()->addRShutdownHook([$this, '_freeObject'], __CLASS__);
     }
 
     function create()
@@ -78,5 +72,9 @@ class MySQL extends Pool
             return false;
         }
         return $obj->{$method}(...$args);
+    }
+
+    public static function getType() {
+        return __CLASS__;
     }
 }

@@ -2,18 +2,23 @@
 
 namespace Swoole\Coroutine\Hook;
 
+use Swoole;
 use Swoole\Coroutine\Pool;
 use Swoole\Component\Redis as CoRedis;
 
 class Redis extends Pool
 {
-    protected $type = 'redis';
-
+    /**
+     * Redis constructor.
+     * @param $config
+     * @throws \Swoole\Exception\InvalidParam
+     * @return Redis
+     */
     function __construct($config)
     {
         parent::__construct($config);
-        \Swoole\Core\Runtime::getInstance()->addRInitHook([$this, '_createObject'], __CLASS__);
-        \Swoole\Core\Runtime::getInstance()->addRShutdownHook([$this, '_freeObject'], __CLASS__);
+        Swoole\Core\Runtime::getInstance()->addRInitHook([$this, '_createObject'], __CLASS__);
+        Swoole\Core\Runtime::getInstance()->addRShutdownHook([$this, '_freeObject'], __CLASS__);
     }
 
     function create()
@@ -35,5 +40,9 @@ class Redis extends Pool
             return false;
         }
         return $redis->{$method}(...$args);
+    }
+
+    public static function getType() {
+        return __CLASS__;
     }
 }

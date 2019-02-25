@@ -8,7 +8,9 @@ use Swoole\IDbRecord;
 
 class MySQL extends Pool implements IDatabase
 {
-    protected $type = 'mysql';
+    public static function getType() {
+        return __CLASS__;
+    }
 
     function __construct($config)
     {
