@@ -1,5 +1,5 @@
 <?php
-require dirname(__DIR__)."/src/Swoole/Coroutine/Component/Memcache.php";
+require dirname(__DIR__) . "/src/Swoole/Coroutine/Memcache.php";
 
 $mc = new Swoole\Coroutine\Memcache();
 $mc->addServer('127.0.0.1', 11211);
