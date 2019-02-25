@@ -1,5 +1,5 @@
 <?php
-namespace Co;
+namespace Swoole\Coroutine;
 
 class WaitGroup
 {

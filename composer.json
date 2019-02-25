@@ -16,13 +16,15 @@
     ],
     "require": {
         "php": "^7.0.0",
-        "ext-swoole": "*",
+        "ext-swoole": "*"
+    },
+    "suggest" : {
         "amphp/amp": "^2.0.3",
         "kmelia/monolog-stdout-handler": "^1.2",
         "nmred/kafka-php": "dev-master",
         "react/event-loop": "dev-master",
         "monolog/monolog": "^1.23"
-    },   
+    },
     "autoload": {
         "files": [
             "src/Swoole/Foundation/helpers.php"
